@@ -3,20 +3,20 @@ const router = require('express').Router();
 const {
     getAllQuestions,
     getQuestionById,
-    createQuestion,
-    updateQuestionById,
-    deleteQuestionById
-} = require('../controllers/questions.controller');
+    //createQuestion,
+    //updateQuestionById,
+    //deleteQuestionById
+} = require('../controller/questions.controller');
 
 
-router.get('/questions', getAllQuestions); 
+router.get('/', getAllQuestions); 
 
-router.get('/questions/:id', getQuestionById);
+router.get('/:id', getQuestionById);
 
-router.post('/questions', createQuestion);
+/*router.post('/create', createQuestion);
 
-router.put('/questions/:id', updateQuestionById);
+router.put('/update/:id', updateQuestionById);
 
-router.delete('/questions/:id', deleteQuestionById);
+router.delete('/delete/:id', deleteQuestionById);*/
 
 module.exports = router;

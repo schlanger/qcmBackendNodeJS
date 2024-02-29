@@ -5,24 +5,19 @@ const express = require('express')
 const app = express()
 const dotenv = require('dotenv'); 
 const client = require('../src/db/db-connection.js')
+const questionRoute = require('../src/routes/questions.route.js')
 
 dotenv.config();
 
+app.use(express.json()); //format json
+app.set('json spaces', 2);
+
+
 app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
+app.use('/questions', questionRoute)
 
-const request = async () => {
-    const query = {
-        text: 'SELECT * FROM questionnaire.question',
-    }
-    const res = await client.query(query);
 
-    for (const r of res.rows) {
-        console.log(r)
-    }
-}
-
-request()
-
-app.listen(3000, () => {    
-    console.log('Server is running on port http://localhost:3000/doc')
+app.listen(8000, () => {    
+    console.log('Server is running on port http://localhost:8000/doc')
 })
+module.exports = app;
