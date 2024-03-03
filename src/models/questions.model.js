@@ -28,8 +28,24 @@ getQuestionById = (id, result_bdd_request) => {
         result_bdd_request(null, response);
     });
 };
+createQuestion = (user, result_bdd_request) => {
+    const { intitule } = user; // Assurez-vous d'avoir les mêmes noms de colonnes que dans votre table
+
+    database.query(
+        "INSERT INTO questionnaire.question (intitule) VALUES ($1)",
+        [intitule], // Passer les valeurs à insérer dans le même ordre que les colonnes
+        (error, response) => {
+            if (error) {
+                result_bdd_request(error);
+            }
+            // Le résultat de la requête est renvoyé
+            result_bdd_request(null, response);
+        }
+    );
+}
 module.exports = {  
     getAllQuestions,
     getQuestionById,
+    createQuestion,
     QuestionConstructor
 };

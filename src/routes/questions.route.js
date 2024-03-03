@@ -3,7 +3,7 @@ const router = require('express').Router();
 const {
     getAllQuestions,
     getQuestionById,
-    //createQuestion,
+    createQuestion,
     //updateQuestionById,
     //deleteQuestionById
 } = require('../controller/questions.controller');
@@ -13,7 +13,8 @@ router.get('/', getAllQuestions);
 
 router.get('/:id', getQuestionById);
 
-/*router.post('/create', createQuestion);
+router.post('/create', createQuestion);
+/*
 
 router.put('/update/:id', updateQuestionById);
 
