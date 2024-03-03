@@ -15,7 +15,7 @@ getAllQuestions = (request,response) => {
 
 // Récupérer une question par son id
 getQuestionById = (request, response) => {
-    questionModel.getQuestionById((error, results) => {
+    questionModel.getQuestionById(request.params.id,(error, results) => {
         if (error) {
             response.status(500).send({
                 message: 
@@ -27,7 +27,30 @@ getQuestionById = (request, response) => {
         }
     });
 };
+createQuestion = (request,response) => {
+    if (!request.body) {
+        response.status(400).send({
+            message: "Content can not be empty!"
+        });
+    }
+
+    const question = new questionModel.QuestionConstructor({
+        id: request.body.id,
+        intitule: request.body.intitule
+    });
+
+    questionModel.createQuestion(question,(error, data) => {   
+        if (error)
+            response.status(500).send({
+                message: error.message || "Some error occurred while creating the question."
+            });
+        else 
+            response.send(data);
+    });
+}
 module.exports = {
     getAllQuestions,
-    getQuestionById
+    getQuestionById,
+    createQuestion
+
 };
