@@ -43,9 +43,32 @@ createQuestion = (user, result_bdd_request) => {
         }
     );
 }
+
+// Mettre à jour une question
+
+updateQuestionById = (id, question, result_bdd_request) => {
+    database.query(
+        "UPDATE questionnaire.question SET intitule = $1 WHERE id = $2",
+        [question.intitule, id],
+        (error, response) => {
+            if (error) {
+                result_bdd_request(error);
+            }
+            // Le résultat de la requête est renvoyé
+            result_bdd_request(null, response);
+        }
+    );
+}
+
+
+
+
+
+
 module.exports = {  
     getAllQuestions,
     getQuestionById,
     createQuestion,
+    updateQuestionById,
     QuestionConstructor
 };
