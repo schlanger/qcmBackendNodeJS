@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "My API",
-    "description": "Description",
+    "description": "API pour les questions et réponses",
     "version": "1.0.0"
   },
   "host": "localhost:8000",
@@ -10,9 +10,20 @@
   "schemes": [
     "http"
   ],
+  "tags": [
+    {
+      "name": "Questions",
+      "description": "Opérations sur les questions"
+    },
+    {
+      "name": "Réponses",
+      "description": "Opérations sur les réponses"
+    }
+  ],
   "paths": {
     "/questions/": {
       "get": {
+        "summary": "Renvoie toutes les questions",
         "description": "",
         "responses": {
           "200": {
@@ -21,11 +32,14 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "tags": [
+          "Questions"]
       }
     },
     "/questions/{id}": {
       "get": {
+        "summary": "Renvoie une question par son id",
         "description": "",
         "parameters": [
           {
@@ -42,11 +56,14 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "tags": [
+          "Questions"]
       }
     },
     "/questions/create": {
       "post": {
+        "summary": "Créer une question",
         "description": "",
         "parameters": [
           {
@@ -75,11 +92,14 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "tags": [
+          "Questions"]
       }
     },
     "/questions/update/{id}": {
       "put": {
+        "summary": "Mettre à jour une question par son id",
         "description": "",
         "parameters": [
           {
@@ -87,21 +107,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "example": "any"
-                },
-                "intitule": {
-                  "example": "any"
-                }
-              }
-            }
           }
         ],
         "responses": {
@@ -114,7 +119,33 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "tags": [
+          "Questions"]
+      }
+    },
+    "/questions/delete/{id}": {
+      "delete": {
+        "summary": "Supprimer une question par son id",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "Questions"]
       }
     }
   }

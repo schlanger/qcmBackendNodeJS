@@ -60,9 +60,21 @@ updateQuestionById = (id, question, result_bdd_request) => {
     );
 }
 
+// Supprimer une question
 
-
-
+deleteQuestionById = (id, result_bdd_request) => {
+    database.query(
+        "DELETE FROM questionnaire.question WHERE id = $1",
+        [id],
+        (error, response) => {
+            if (error) {
+                result_bdd_request(error);
+            }
+            // Le résultat de la requête est renvoyé
+            result_bdd_request(null, response);
+        }
+    );
+}
 
 
 module.exports = {  
@@ -70,5 +82,6 @@ module.exports = {
     getQuestionById,
     createQuestion,
     updateQuestionById,
+    deleteQuestionById,
     QuestionConstructor
 };
