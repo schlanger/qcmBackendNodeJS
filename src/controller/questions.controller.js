@@ -64,10 +64,27 @@ updateQuestionById = (request,response) => {
             response.send(data);
     });
 }
+
+// Supprimer une question
+
+deleteQuestionById = (request,response) => {
+    questionModel.deleteQuestionById(request.params.id,(error, data) => {
+        if (error) {
+            response.status(500).send({
+                message: 
+                error.message ||
+                'Erreur lors de la suppression de la question'
+            });
+        } else {
+            response.send(data);
+        }
+    });
+}
+
 module.exports = {
     getAllQuestions,
     getQuestionById,
     createQuestion,
-    updateQuestionById
-
+    updateQuestionById,
+    deleteQuestionById
 };
