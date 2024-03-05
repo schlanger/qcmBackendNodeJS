@@ -48,9 +48,26 @@ createQuestion = (request,response) => {
             response.send(data);
     });
 }
+updateQuestionById = (request,response) => {
+    if (!request.body) {
+        response.status(400).send({
+            message: "Content can not be empty!"
+        });
+    }
+
+    questionModel.updateQuestionById(request.params.id, new questionModel.QuestionConstructor(request.body),(error, data) => {   
+        if (error)
+            response.status(500).send({
+                message: error.message || "Some error occurred while updating the user."
+            });
+        else 
+            response.send(data);
+    });
+}
 module.exports = {
     getAllQuestions,
     getQuestionById,
-    createQuestion
+    createQuestion,
+    updateQuestionById
 
 };
