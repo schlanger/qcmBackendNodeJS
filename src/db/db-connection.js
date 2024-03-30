@@ -8,7 +8,8 @@ const client = new Client({
     host: process.env.HOST,
     database: process.env.DB_DATABASE,
     user: process.env.DB_USER,
-    password: process.env.DB_PASS
+    password: process.env.DB_PASS,
+    port: process.env.PORT,
 })
 
 client.connect()
