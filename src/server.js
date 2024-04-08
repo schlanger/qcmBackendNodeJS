@@ -7,6 +7,7 @@ const app = express()
 const dotenv = require('dotenv'); 
 const client = require('../src/db/db-connection.js')
 const questionRoute = require('../src/routes/questions.route.js')
+const responseRoute = require('../src/routes/reponses.route.js')
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.set('json spaces', 2);
 
 app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use('/questions', questionRoute)
+app.use('/reponse', responseRoute)
 
 app.listen(8000, () => {    
     console.log('Server is running on port http://localhost:8000/doc')
